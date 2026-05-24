@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>袁天罡称骨算命 - 正在跳转</title>
+<style>
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f5e6d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  text-align: center;
+  max-width: 400px;
+}
+h1 {
+  color: #5c3d2e;
+  margin-bottom: 20px;
+}
+.loading {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #d4c4af;
+  border-top: 5px solid #a0764a;
+  border-radius: 50%;
+  margin: 20px auto;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #a0764a;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>袁天罡称骨算命</h1>
+  <p>正在加载称骨算命应用...</p>
+  <div class="loading"></div>
+  <p>如果页面没有自动跳转，请点击下方按钮</p>
+  <a href="chenggu.html">进入称骨算命</a>
+</div>
+<script>
+setTimeout(function() {
+  window.location.href = "chenggu.html";
+}, 2000);
+</script>
+</body>
+</html>
