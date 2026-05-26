@@ -6,129 +6,56 @@
 <title>相亲登记簿</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: #f8f4f0;
-  min-height: 100vh;
-  color: #333;
-}
-
-/* 导航 */
+body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f4f0; min-height: 100vh; color: #333; }
 .nav { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid #eee; display: flex; }
 .nav-item { flex: 1; text-align: center; padding: 14px 0; font-size: 15px; color: #999; cursor: pointer; transition: .2s; }
 .nav-item.active { color: #e8546e; font-weight: 700; border-bottom: 2px solid #e8546e; }
-
-/* 页面容器 */
 .page { display: none; padding: 16px; max-width: 500px; margin: 0 auto; }
 .page.active { display: block; }
-
-/* 登记表单 */
 .form-card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,.04); }
 .form-group { margin-bottom: 16px; }
 .form-group label { display: block; font-size: 14px; color: #666; margin-bottom: 6px; font-weight: 600; }
-.form-group input, .form-group select, .form-group textarea {
-  width: 100%; height: 44px; border: 1.5px solid #e8e0db; border-radius: 10px; padding: 0 12px;
-  font-size: 15px; color: #333; background: #fdfbf8; transition: border-color .2s;
-}
+.form-group input,.form-group select,.form-group textarea { width: 100%; height: 44px; border: 1.5px solid #e8e0db; border-radius: 10px; padding: 0 12px; font-size: 15px; color: #333; background: #fdfbf8; transition: border-color .2s; }
 .form-group textarea { height: 90px; padding: 10px 12px; resize: none; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-  outline: none; border-color: #e8546e; box-shadow: 0 0 0 3px rgba(232,84,110,.08);
-}
-.btn-submit {
-  width: 100%; height: 48px; background: linear-gradient(135deg, #e8546e, #d43d56);
-  color: #fff; font-size: 16px; font-weight: 700; border: none; border-radius: 12px;
-  cursor: pointer; letter-spacing: 2px; transition: opacity .2s;
-}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline: none; border-color: #e8546e; box-shadow: 0 0 0 3px rgba(232,84,110,.08); }
+.btn-submit { width: 100%; height: 48px; background: linear-gradient(135deg,#e8546e,#d43d56); color: #fff; font-size: 16px; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; letter-spacing: 2px; transition: opacity .2s; }
 .btn-submit:active { opacity: .85; }
-.btn-reset {
-  width: 100%; height: 44px; background: #fff; color: #999; font-size: 14px;
-  border: 1.5px solid #e0dcd7; border-radius: 10px; cursor: pointer; margin-top: 10px;
-}
-
-/* 浏览页面 */
-.search-bar {
-  display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
-}
-.search-bar select, .search-bar input {
-  flex: 1; min-width: 80px; height: 40px; border: 1.5px solid #e0dcd7; border-radius: 10px;
-  padding: 0 10px; font-size: 14px; background: #fff;
-}
-.person-card {
-  background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.04); position: relative; transition: transform .15s;
-}
+.btn-reset { width: 100%; height: 44px; background: #fff; color: #999; font-size: 14px; border: 1.5px solid #e0dcd7; border-radius: 10px; cursor: pointer; margin-top: 10px; }
+.search-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.search-bar select,.search-bar input { flex: 1; min-width: 80px; height: 40px; border: 1.5px solid #e0dcd7; border-radius: 10px; padding: 0 10px; font-size: 14px; background: #fff; }
+.person-card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.04); position: relative; transition: transform .15s; }
 .person-card:active { transform: scale(.99); }
 .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-.card-avatar {
-  width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #feb2c0, #f4728a);
-  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px;
-  font-weight: 700; flex-shrink: 0; overflow: hidden;
-}
+.card-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg,#feb2c0,#f4728a); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; font-weight: 700; flex-shrink: 0; }
 .card-info { flex: 1; }
 .card-name { font-size: 18px; font-weight: 700; color: #333; }
 .card-basic { font-size: 13px; color: #999; margin-top: 2px; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.tag {
-  padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
-  background: #fef0f3; color: #e8546e;
-}
+.tag { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; background: #fef0f3; color: #e8546e; }
 .tag.blue { background: #eef5ff; color: #4a90d9; }
 .tag.green { background: #eefaf1; color: #3c9d5e; }
 .card-detail { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0ece8; }
 .card-detail.show { display: block; }
 .card-detail p { font-size: 14px; color: #666; line-height: 1.8; }
-.btn-detail {
-  display: block; text-align: center; font-size: 13px; color: #e8546e; margin-top: 10px;
-  cursor: pointer; padding: 6px;
-}
-.card-contact { display: flex; gap: 8px; margin-top: 10px; }
-.btn-contact {
-  flex: 1; height: 36px; line-height: 36px; text-align: center; border-radius: 8px;
-  font-size: 13px; font-weight: 600; cursor: pointer; border: none;
-  background: #e8546e; color: #fff;
-}
-.btn-contact.outline { background: #fff; color: #e8546e; border: 1.5px solid #e8546e; }
-
-/* 空状态 */
+.btn-detail { display: block; text-align: center; font-size: 13px; color: #e8546e; margin-top: 10px; cursor: pointer; padding: 6px; }
 .empty { text-align: center; padding: 60px 20px; color: #ccc; }
 .empty-icon { font-size: 56px; margin-bottom: 12px; }
 .empty-text { font-size: 15px; }
-
-/* 我的页面 */
 .my-card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,.04); margin-bottom: 16px; }
 .my-title { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 12px; }
 .my-count { font-size: 36px; font-weight: 800; color: #e8546e; }
 .my-sub { font-size: 13px; color: #999; margin-top: 4px; }
-.btn-admin {
-  width: 100%; height: 44px; background: #fff; color: #e8546e; font-size: 14px;
-  border: 1.5px solid #e8546e; border-radius: 10px; cursor: pointer; margin-bottom: 10px;
-}
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 100;
-  display: flex; align-items: flex-end; justify-content: center;
-}
-.modal-sheet {
-  background: #fff; border-radius: 16px 16px 0 0; padding: 24px 20px 30px;
-  width: 100%; max-width: 500px; max-height: 70vh; overflow-y: auto;
-}
+.btn-admin { width: 100%; height: 44px; background: #fff; color: #e8546e; font-size: 14px; border: 1.5px solid #e8546e; border-radius: 10px; cursor: pointer; margin-bottom: 10px; text-align: center; line-height: 42px; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 100; display: flex; align-items: flex-end; justify-content: center; }
+.modal-sheet { background: #fff; border-radius: 16px 16px 0 0; padding: 24px 20px 30px; width: 100%; max-width: 500px; max-height: 70vh; overflow-y: auto; }
 .modal-sheet h3 { font-size: 17px; margin-bottom: 16px; color: #333; text-align: center; }
-.modal-sheet textarea {
-  width: 100%; height: 120px; border: 1.5px solid #e8e0db; border-radius: 10px;
-  padding: 10px; font-size: 13px; resize: none; font-family: monospace;
-}
-.btn-modal {
-  width: 100%; height: 44px; margin-top: 8px; border-radius: 10px;
-  font-size: 14px; font-weight: 600; cursor: pointer; border: none;
-}
+.modal-sheet textarea { width: 100%; height: 120px; border: 1.5px solid #e8e0db; border-radius: 10px; padding: 10px; font-size: 13px; resize: none; font-family: monospace; }
+.modal-sheet input { width: 100%; height: 44px; border: 1.5px solid #e8e0db; border-radius: 10px; padding: 0 12px; font-size: 15px; }
+.btn-modal { width: 100%; height: 44px; margin-top: 8px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; }
 .btn-modal.primary { background: #e8546e; color: #fff; }
 .btn-modal.secondary { background: #f5f3f0; color: #666; }
-
-/* toast */
-.toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  background: rgba(0,0,0,.75); color: #fff; padding: 12px 24px; border-radius: 8px;
-  font-size: 14px; z-index: 200; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,.75); color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; z-index: 200; pointer-events: none; opacity: 0; transition: opacity .3s; }
 .toast.show { opacity: 1; }
-
 .required-star { color: #e8546e; }
 </style>
 </head>
@@ -140,421 +67,300 @@ body {
   <div class="nav-item" data-page="mine">👤 我的</div>
 </div>
 
-<!-- ====== 登记页面 ====== -->
+<!-- 登记 -->
 <div class="page active" id="page-register">
   <div class="form-card">
     <h3 style="text-align:center;margin-bottom:18px;color:#e8546e;">相亲信息登记表</h3>
-
-    <div class="form-group">
-      <label>性别 <span class="required-star">*</span></label>
-      <select id="reg-gender"><option value="">请选择</option><option value="男">男</option><option value="女">女</option></select>
-    </div>
-    <div class="form-group">
-      <label>昵称 <span class="required-star">*</span></label>
-      <input id="reg-name" placeholder="你的昵称或称呼">
-    </div>
-    <div class="form-group">
-      <label>年龄 <span class="required-star">*</span></label>
-      <input id="reg-age" type="number" placeholder="年龄" min="18" max="80">
-    </div>
-    <div class="form-group">
-      <label>身高（cm）</label>
-      <input id="reg-height" type="number" placeholder="身高（cm）" min="140" max="210">
-    </div>
-    <div class="form-group">
-      <label>学历</label>
-      <select id="reg-edu">
-        <option value="">请选择</option>
-        <option>高中及以下</option><option>大专</option><option>本科</option><option>硕士</option><option>博士</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>职业</label>
-      <input id="reg-job" placeholder="从事的职业">
-    </div>
-    <div class="form-group">
-      <label>所在城市 <span class="required-star">*</span></label>
-      <input id="reg-city" placeholder="如：北京">
-    </div>
-    <div class="form-group">
-      <label>年收入（万）</label>
-      <input id="reg-income" type="number" placeholder="年收入（万）" min="0">
-    </div>
-    <div class="form-group">
-      <label>婚姻状况 <span class="required-star">*</span></label>
-      <select id="reg-marital">
-        <option value="">请选择</option><option>未婚</option><option>离异</option><option>丧偶</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>是否有房</label>
-      <select id="reg-house"><option value="">请选择</option><option>有房</option><option>无房</option><option>计划购房</option></select>
-    </div>
-    <div class="form-group">
-      <label>微信号（仅管理员可见）</label>
-      <input id="reg-wechat" placeholder="方便联系的微信号">
-    </div>
-    <div class="form-group">
-      <label>自我介绍 <span class="required-star">*</span></label>
-      <textarea id="reg-intro" placeholder="简单介绍一下自己：兴趣爱好、性格特点、生活状态……"></textarea>
-    </div>
-    <div class="form-group">
-      <label>择偶要求</label>
-      <textarea id="reg-requirement" placeholder="你希望对方具备的条件：年龄范围、身高、学历、性格等"></textarea>
-    </div>
-
-    <div class="form-group">
-      <label>上传照片（最多3张）</label>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <label for="photo-upload-1" style="flex:1;min-width:100px;height:100px;border:2px dashed #e8e0db;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fdfbf8;color:#999;font-size:13px;">
-          <div style="text-align:center;">
-            <div style="font-size:24px;margin-bottom:4px;">📷</div>
-            <div>点击上传</div>
-          </div>
-          <input type="file" id="photo-upload-1" accept="image/*" style="display:none;" onchange="previewPhoto(1)">
-        </label>
-        <label for="photo-upload-2" style="flex:1;min-width:100px;height:100px;border:2px dashed #e8e0db;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fdfbf8;color:#999;font-size:13px;">
-          <div style="text-align:center;">
-            <div style="font-size:24px;margin-bottom:4px;">📷</div>
-            <div>点击上传</div>
-          </div>
-          <input type="file" id="photo-upload-2" accept="image/*" style="display:none;" onchange="previewPhoto(2)">
-        </label>
-        <label for="photo-upload-3" style="flex:1;min-width:100px;height:100px;border:2px dashed #e8e0db;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fdfbf8;color:#999;font-size:13px;">
-          <div style="text-align:center;">
-            <div style="font-size:24px;margin-bottom:4px;">📷</div>
-            <div>点击上传</div>
-          </div>
-          <input type="file" id="photo-upload-3" accept="image/*" style="display:none;" onchange="previewPhoto(3)">
-        </label>
-      </div>
-      <div id="photo-previews" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;"></div>
-      <p style="font-size:12px;color:#999;margin-top:4px;">照片仅本地存储，不会上传到服务器</p>
-    </div>
-
+    <div class="form-group"><label>性别 <span class="required-star">*</span></label><select id="reg-gender"><option value="">请选择</option><option value="男">男</option><option value="女">女</option></select></div>
+    <div class="form-group"><label>昵称 <span class="required-star">*</span></label><input id="reg-name" placeholder="你的昵称或称呼"></div>
+    <div class="form-group"><label>年龄 <span class="required-star">*</span></label><input id="reg-age" type="number" placeholder="年龄" min="18" max="80"></div>
+    <div class="form-group"><label>身高（cm）</label><input id="reg-height" type="number" placeholder="身高" min="140" max="210"></div>
+    <div class="form-group"><label>学历</label><select id="reg-edu"><option value="">请选择</option><option>高中及以下</option><option>大专</option><option>本科</option><option>硕士</option><option>博士</option></select></div>
+    <div class="form-group"><label>职业</label><input id="reg-job" placeholder="从事的职业"></div>
+    <div class="form-group"><label>所在城市 <span class="required-star">*</span></label><input id="reg-city" placeholder="如：北京"></div>
+    <div class="form-group"><label>年收入（万）</label><input id="reg-income" type="number" placeholder="年收入" min="0"></div>
+    <div class="form-group"><label>负债（万）</label><input id="reg-debt" type="number" placeholder="当前负债金额" min="0"></div>
+    <div class="form-group"><label>婚姻状况 <span class="required-star">*</span></label><select id="reg-marital"><option value="">请选择</option><option>未婚</option><option>离异</option><option>丧偶</option></select></div>
+    <div class="form-group"><label>是否有房</label><select id="reg-house"><option value="">请选择</option><option>有房</option><option>无房</option><option>计划购房</option></select></div>
+    <div class="form-group"><label>星座</label><select id="reg-zodiac"><option value="">请选择</option><option>白羊座</option><option>金牛座</option><option>双子座</option><option>巨蟹座</option><option>狮子座</option><option>处女座</option><option>天秤座</option><option>天蝎座</option><option>射手座</option><option>摩羯座</option><option>水瓶座</option><option>双鱼座</option></select></div>
+    <div class="form-group"><label>生肖</label><select id="reg-shengxiao"><option value="">请选择</option><option>鼠</option><option>牛</option><option>虎</option><option>兔</option><option>龙</option><option>蛇</option><option>马</option><option>羊</option><option>猴</option><option>鸡</option><option>狗</option><option>猪</option></select></div>
+    <div class="form-group"><label>登记日期</label><input id="reg-date" type="date"></div>
+    <div class="form-group"><label>微信号（仅管理员可见）</label><input id="reg-wechat" placeholder="方便联系的微信号"></div>
+    <div class="form-group"><label>自我介绍 <span class="required-star">*</span></label><textarea id="reg-intro" placeholder="兴趣爱好、性格特点、生活状态……"></textarea></div>
+    <div class="form-group"><label>择偶要求</label><textarea id="reg-requirement" placeholder="年龄范围、身高、学历、性格等"></textarea></div>
     <button class="btn-submit" onclick="doRegister()">提 交 登 记</button>
     <button class="btn-reset" onclick="resetForm()">清空重填</button>
   </div>
 </div>
 
-<!-- ====== 浏览页面 ====== -->
+<!-- 浏览 -->
 <div class="page" id="page-browse">
   <div class="search-bar">
-    <select id="filter-gender" onchange="renderBrowse()">
-      <option value="">全部性别</option><option value="男">男</option><option value="女">女</option>
-    </select>
-    <select id="filter-age" onchange="renderBrowse()">
-      <option value="">全部年龄</option><option value="18-25">18-25</option><option value="26-30">26-30</option>
-      <option value="31-35">31-35</option><option value="36-40">36-40</option><option value="41+">41+</option>
-    </select>
+    <select id="filter-gender" onchange="renderBrowse()"><option value="">全部性别</option><option value="男">男</option><option value="女">女</option></select>
+    <select id="filter-age" onchange="renderBrowse()"><option value="">全部年龄</option><option value="18-25">18-25</option><option value="26-30">26-30</option><option value="31-35">31-35</option><option value="36-40">36-40</option><option value="41+">41+</option></select>
     <input id="filter-city" placeholder="城市" oninput="renderBrowse()" style="flex:0.8;min-width:60px;">
   </div>
   <div id="browse-list"></div>
-  <div class="empty" id="browse-empty">
-    <div class="empty-icon">📋</div>
-    <div class="empty-text">还没有人登记，快去登记吧！</div>
-  </div>
+  <div class="empty" id="browse-empty"><div class="empty-icon">📋</div><div class="empty-text">还没有人登记，快去登记吧！</div></div>
 </div>
 
-<!-- ====== 我的页面 ====== -->
+<!-- 我的 -->
 <div class="page" id="page-mine">
   <div class="my-card">
     <div class="my-title">登记总人数</div>
     <div class="my-count" id="total-count">0</div>
     <div class="my-sub">其中男性 <span id="male-count">0</span> 人，女性 <span id="female-count">0</span> 人</div>
   </div>
-
-  <button class="btn-admin" onclick="showImportModal()">📥 导入数据（合并）</button>
-  <button class="btn-admin" style="color:#666;border-color:#ccc;" onclick="exportData()">📤 导出全部数据</button>
-  <button class="btn-admin" style="color:#c0392b;border-color:#e74c3c;margin-top:20px;" onclick="clearAll()">🗑 清空全部数据</button>
+  <div class="my-card">
+    <div class="my-title">我的登记</div>
+    <div id="my-list"></div>
+  </div>
+  <div class="my-card">
+    <div class="my-title">数据管理 <span style="font-size:12px;color:#e8546e;">（需管理员密码）</span></div>
+    <div class="btn-admin" onclick="showAdmin('download')">📥 下载全部数据（JSON）</div>
+    <div class="btn-admin" style="color:#666;border-color:#ccc;" onclick="showAdmin('import')">📤 导入数据（合并）</div>
+    <div class="btn-admin" style="color:#c0392b;border-color:#e74c3c;margin-top:10px;" onclick="showAdmin('clear')">🗑 下载并清空全部数据</div>
+  </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- 导入弹窗 -->
-<div class="modal-overlay" id="import-modal" style="display:none;" onclick="if(event.target===this)closeImportModal()">
+<!-- 管理员弹窗 -->
+<div class="modal-overlay" id="admin-modal" style="display:none;" onclick="if(event.target===this)closeAdmin()">
   <div class="modal-sheet">
-    <h3>导入数据</h3>
-    <p style="font-size:13px;color:#999;margin-bottom:8px;">粘贴 JSON 数据，会与现有数据合并（跳过重复）</p>
+    <h3>🔐 管理员验证</h3>
+    <p style="font-size:13px;color:#999;margin-bottom:12px;">请输入管理员密码</p>
+    <input type="password" id="admin-pwd" placeholder="输入密码">
+    <button class="btn-modal primary" onclick="verifyAdmin()">确认</button>
+    <button class="btn-modal secondary" onclick="closeAdmin()">取消</button>
+  </div>
+</div>
+
+<!-- 导入弹窗 -->
+<div class="modal-overlay" id="import-modal" style="display:none;" onclick="if(event.target===this)closeImport()">
+  <div class="modal-sheet">
+    <h3>📤 导入数据</h3>
+    <p style="font-size:13px;color:#999;margin-bottom:8px;">粘贴 JSON 数据，与现有数据合并（跳过重复）</p>
     <textarea id="import-json" placeholder='[{"gender":"男","name":"张三",...}]'></textarea>
     <button class="btn-modal primary" onclick="doImport()">确认导入</button>
-    <button class="btn-modal secondary" onclick="closeImportModal()">取消</button>
+    <button class="btn-modal secondary" onclick="closeImport()">取消</button>
   </div>
 </div>
 
 <script>
-// ============ 数据管理 ============
+// ============ SHA-256 ============
+async function sha256(msg) {
+  const buf = new TextEncoder().encode(msg);
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+// ============ 管理员密码（SHA-256 哈希，源码中不可见明文）============
+// 默认密码: admin123 —— 可自行替换哈希值
+const ADMIN_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
+
+let adminCallback = null, adminAction = '';
+
+async function verifyAdmin() {
+  const input = document.getElementById('admin-pwd').value;
+  const hash = await sha256(input);
+  if (hash === ADMIN_HASH) {
+    closeAdmin();
+    if (adminCallback) adminCallback();
+  } else {
+    toast('密码错误');
+  }
+  document.getElementById('admin-pwd').value = '';
+}
+
+// ============ 数据 ============
 const STORAGE_KEY = 'xiangqin_data';
+const COUNT_KEY = 'xiangqin_total_count';
+const MY_ID_KEY = 'xiangqin_my_id';
+
+function getMyId() {
+  let id = localStorage.getItem(MY_ID_KEY);
+  if (!id) { id = 'me_' + Date.now().toString(36); localStorage.setItem(MY_ID_KEY, id); }
+  return id;
+}
 
 function loadAll() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
   catch { return []; }
 }
-function saveAll(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
-
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 1800);
+function saveAll(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+  catch(e) { toast('存储空间不足'); }
 }
 
-// ============ 导航 ============
-document.querySelectorAll('.nav-item').forEach(el => {
-  el.addEventListener('click', () => {
-    document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
-    document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('page-' + el.dataset.page).classList.add('active');
-    if (el.dataset.page === 'browse') renderBrowse();
-    if (el.dataset.page === 'mine') renderMine();
-  });
-});
-
-// ============ 照片管理 ============
-let photoData = {};
-
-function previewPhoto(slot) {
-  const file = document.getElementById('photo-upload-' + slot).files[0];
-  if (!file) return;
-  if (file.size > 2 * 1024 * 1024) { toast('照片不能超过 2MB'); return; }
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    photoData[slot] = e.target.result;
-    renderPhotoPreviews();
-  };
-  reader.readAsDataURL(file);
+// 登记总人数独立存储（下载清空后保留）
+function getTotalCount() {
+  return parseInt(localStorage.getItem(COUNT_KEY)) || 0;
 }
-
-function renderPhotoPreviews() {
-  const container = document.getElementById('photo-previews');
-  const slots = [1,2,3].filter(s => photoData[s]);
-  if (slots.length === 0) { container.innerHTML = ''; return; }
-  container.innerHTML = slots.map(s => `
-    <div style="position:relative;width:100px;height:100px;border-radius:10px;overflow:hidden;border:2px solid #e8e0db;">
-      <img src="${photoData[s]}" style="width:100%;height:100%;object-fit:cover;">
-      <div onclick="removePhoto(${s})" style="position:absolute;top:2px;right:2px;width:22px;height:22px;background:rgba(0,0,0,.5);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;">✕</div>
-    </div>
-  `).join('');
-}
-
-function removePhoto(slot) {
-  delete photoData[slot];
-  document.getElementById('photo-upload-' + slot).value = '';
-  renderPhotoPreviews();
-}
-
-function clearPhotos() {
-  photoData = {};
-  [1,2,3].forEach(s => document.getElementById('photo-upload-' + s).value = '');
-  renderPhotoPreviews();
+function incrementCount() {
+  var n = getTotalCount() + 1;
+  localStorage.setItem(COUNT_KEY, n.toString());
+  return n;
 }
 
 // ============ 登记 ============
 function doRegister() {
-  const g = document.getElementById('reg-gender').value;
-  const name = document.getElementById('reg-name').value.trim();
-  const age = parseInt(document.getElementById('reg-age').value);
-  const city = document.getElementById('reg-city').value.trim();
-  const marital = document.getElementById('reg-marital').value;
-  const intro = document.getElementById('reg-intro').value.trim();
-
-  if (!g || !name || !age || !city || !marital || !intro) {
-    toast('请填写所有带 * 的必填项');
-    return;
-  }
-
-  const photos = Object.values(photoData);
-  const person = {
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
-    gender: g,
-    name,
-    age,
-    height: document.getElementById('reg-height').value || '',
-    edu: document.getElementById('reg-edu').value,
-    job: document.getElementById('reg-job').value.trim(),
-    city,
-    income: document.getElementById('reg-income').value || '',
-    marital,
-    house: document.getElementById('reg-house').value,
-    wechat: document.getElementById('reg-wechat').value.trim(),
-    intro,
-    requirement: document.getElementById('reg-requirement').value.trim(),
-    photos: photos, // 存储为 base64 数组
-    createdAt: new Date().toISOString().slice(0, 10)
-  };
-
-  const all = loadAll();
-  all.push(person);
-  saveAll(all);
-  toast('登记成功！');
-  resetForm();
-  clearPhotos();
-  renderMine();
+  var g=document.getElementById('reg-gender').value, n=document.getElementById('reg-name').value.trim();
+  var a=parseInt(document.getElementById('reg-age').value), c=document.getElementById('reg-city').value.trim();
+  var m=document.getElementById('reg-marital').value, i=document.getElementById('reg-intro').value.trim();
+  var d=document.getElementById('reg-date').value;
+  if(!g||!n||!a||!c||!m||!i){toast('请填写所有带 * 的必填项');return;}
+  if(!d) d = new Date().toISOString().slice(0,10);
+  var p={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),ownerId:getMyId(),gender:g,name:n,age:a,
+    height:document.getElementById('reg-height').value||'',edu:document.getElementById('reg-edu').value,
+    job:document.getElementById('reg-job').value.trim(),city:c,income:document.getElementById('reg-income').value||'',
+    debt:document.getElementById('reg-debt').value||'',marital:m,house:document.getElementById('reg-house').value,
+    zodiac:document.getElementById('reg-zodiac').value,shengxiao:document.getElementById('reg-shengxiao').value,
+    wechat:document.getElementById('reg-wechat').value.trim(),intro:i,
+    requirement:document.getElementById('reg-requirement').value.trim(),date:d};
+  var all=loadAll(); all.push(p); saveAll(all); incrementCount();
+  toast('登记成功！'); resetForm(); renderMine(); renderBrowse();
 }
-
 function resetForm() {
-  ['reg-gender','reg-name','reg-age','reg-height','reg-edu','reg-job','reg-city',
-   'reg-income','reg-marital','reg-house','reg-wechat','reg-intro','reg-requirement']
-    .forEach(id => {
-      const el = document.getElementById(id);
-      if (el.tagName === 'SELECT') el.selectedIndex = 0;
-      else el.value = '';
-    });
-  clearPhotos();
+  ['reg-gender','reg-name','reg-age','reg-height','reg-edu','reg-job','reg-city','reg-income','reg-debt','reg-marital','reg-house','reg-zodiac','reg-shengxiao','reg-date','reg-wechat','reg-intro','reg-requirement'].forEach(function(id){
+    var e=document.getElementById(id); if(e.tagName==='SELECT')e.selectedIndex=0; else e.value='';
+  });
 }
 
 // ============ 浏览 ============
-let expandedIds = {};
-
+var expandedIds={};
 function renderBrowse() {
-  const all = loadAll();
-  const fGender = document.getElementById('filter-gender').value;
-  const fAge = document.getElementById('filter-age').value;
-  const fCity = document.getElementById('filter-city').value.trim();
-
-  let filtered = all;
-  if (fGender) filtered = filtered.filter(p => p.gender === fGender);
-  if (fAge === '18-25') filtered = filtered.filter(p => p.age >= 18 && p.age <= 25);
-  if (fAge === '26-30') filtered = filtered.filter(p => p.age >= 26 && p.age <= 30);
-  if (fAge === '31-35') filtered = filtered.filter(p => p.age >= 31 && p.age <= 35);
-  if (fAge === '36-40') filtered = filtered.filter(p => p.age >= 36 && p.age <= 40);
-  if (fAge === '41+') filtered = filtered.filter(p => p.age >= 41);
-  if (fCity) filtered = filtered.filter(p => p.city.includes(fCity));
-
-  const listEl = document.getElementById('browse-list');
-  const emptyEl = document.getElementById('browse-empty');
-
-  if (filtered.length === 0) {
-    listEl.innerHTML = '';
-    emptyEl.style.display = 'block';
-    return;
-  }
-  emptyEl.style.display = 'none';
-
-  listEl.innerHTML = filtered.map((p, i) => {
-    const isExpanded = expandedIds[p.id];
-    const avatarChar = p.name.charAt(0) || '?';
-    const genderEmoji = p.gender === '女' ? '🌸' : '🌿';
-    const hasPhoto = p.photos && p.photos.length > 0;
-
-    const tags = [];
-    if (p.edu) tags.push(`<span class="tag blue">${p.edu}</span>`);
-    if (p.job) tags.push(`<span class="tag green">${p.job}</span>`);
-    if (p.house === '有房') tags.push(`<span class="tag">🏠 有房</span>`);
-    if (p.income) tags.push(`<span class="tag blue">💰 ${p.income}万/年</span>`);
-
-    const detailHTML = isExpanded ? `
-      <div class="card-detail show">
-        ${p.photos && p.photos.length > 0 ? `
-          <div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;padding-bottom:4px;">
-            ${p.photos.map(ph => `<img src="${ph}" style="width:120px;height:120px;border-radius:8px;object-fit:cover;flex-shrink:0;">`).join('')}
-          </div>
-        ` : ''}
-        <p>📝 自我介绍：${escHtml(p.intro)}</p>
-        ${p.requirement ? `<p>💞 择偶要求：${escHtml(p.requirement)}</p>` : ''}
-        ${p.wechat ? `<p>📱 微信：${escHtml(p.wechat)}</p>` : ''}
-        <p style="font-size:12px;color:#bbb;margin-top:4px;">登记日期：${p.createdAt}</p>
-      </div>
-    ` : '';
-
-    return `
-      <div class="person-card">
-        <div class="card-header">
-          <div class="card-avatar" style="${hasPhoto ? `background:transparent;` : ''}">
-            ${hasPhoto ? `<img src="${p.photos[0]}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">` : avatarChar}
-          </div>
-          <div class="card-info">
-            <div class="card-name">${genderEmoji} ${escHtml(p.name)} · ${p.age}岁</div>
-            <div class="card-basic">${p.height ? p.height+'cm · ' : ''}${escHtml(p.city)} · ${p.marital}</div>
-          </div>
-        </div>
-        <div class="card-tags">${tags.join('')}</div>
-        ${detailHTML}
-        <div class="btn-detail" onclick="toggleDetail('${p.id}')">
-          ${isExpanded ? '▲ 收起详情' : '▼ 展开详情'}
-        </div>
-      </div>
-    `;
+  var all=loadAll(), fG=document.getElementById('filter-gender').value;
+  var fA=document.getElementById('filter-age').value, fC=document.getElementById('filter-city').value.trim();
+  all=all.filter(function(p){if(fG&&p.gender!==fG)return false;if(fA==='18-25'&&!(p.age>=18&&p.age<=25))return false;if(fA==='26-30'&&!(p.age>=26&&p.age<=30))return false;if(fA==='31-35'&&!(p.age>=31&&p.age<=35))return false;if(fA==='36-40'&&!(p.age>=36&&p.age<=40))return false;if(fA==='41+'&&p.age<41)return false;if(fC&&p.city.indexOf(fC)===-1)return false;return true;});
+  var l=document.getElementById('browse-list'), em=document.getElementById('browse-empty');
+  if(!all.length){l.innerHTML='';em.style.display='block';return;}em.style.display='none';
+  l.innerHTML=all.map(function(p){
+    var isExp=expandedIds[p.id], av=p.name.charAt(0)||'?', ge=p.gender==='女'?'🌸':'🌿';
+    var tags=[];
+    if(p.edu)tags.push('<span class="tag blue">'+p.edu+'</span>');
+    if(p.job)tags.push('<span class="tag green">'+p.job+'</span>');
+    if(p.house==='有房')tags.push('<span class="tag">🏠 有房</span>');
+    if(p.income)tags.push('<span class="tag blue">💰 '+p.income+'万/年</span>');
+    if(p.zodiac)tags.push('<span class="tag">♈ '+p.zodiac+'</span>');
+    if(p.shengxiao)tags.push('<span class="tag green">🐲 '+p.shengxiao+'</span>');
+    var detail='';
+    if(isExp){detail+='<div class="card-detail show">';
+      detail+='<p>📝 自我介绍：'+escHtml(p.intro)+'</p>';
+      if(p.requirement)detail+='<p>💞 择偶要求：'+escHtml(p.requirement)+'</p>';
+      if(p.debt)detail+='<p>🏦 负债：'+escHtml(p.debt)+'万</p>';
+      detail+='<p style="font-size:12px;color:#bbb;margin-top:4px;">登记日期：'+(p.date||'未填写')+'</p>';
+      detail+='<p style="font-size:13px;color:#e8546e;margin-top:6px;">💬 想联系TA？请找管理员牵线</p>';
+      detail+='</div>';}
+    return '<div class="person-card"><div class="card-header"><div class="card-avatar">'+av+'</div><div class="card-info"><div class="card-name">'+ge+' '+escHtml(p.name)+' · '+p.age+'岁</div><div class="card-basic">'+(p.height?p.height+'cm · ':'')+escHtml(p.city)+' · '+p.marital+'</div></div></div><div class="card-tags">'+tags.join('')+'</div>'+detail+'<div class="btn-detail" onclick="toggleDetail(\''+p.id+'\')">'+(isExp?'▲ 收起详情':'▼ 展开详情')+'</div></div>';
   }).join('');
 }
-
-function toggleDetail(id) {
-  expandedIds[id] = !expandedIds[id];
-  renderBrowse();
-}
-
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+function toggleDetail(id){expandedIds[id]=!expandedIds[id];renderBrowse();}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 // ============ 我的 ============
-function renderMine() {
-  const all = loadAll();
-  document.getElementById('total-count').textContent = all.length;
-  document.getElementById('male-count').textContent = all.filter(p => p.gender === '男').length;
-  document.getElementById('female-count').textContent = all.filter(p => p.gender === '女').length;
+function renderMine(){
+  var all=loadAll(), myId=getMyId(), totalCount=getTotalCount();
+  var maleCount=all.filter(function(p){return p.gender==='男'}).length;
+  var femaleCount=all.filter(function(p){return p.gender==='女'}).length;
+  document.getElementById('total-count').textContent=totalCount;
+  document.getElementById('male-count').textContent=maleCount;
+  document.getElementById('female-count').textContent=femaleCount;
+  var myData=all.filter(function(p){return p.ownerId===myId});
+  var ml=document.getElementById('my-list');
+  if(!myData.length){ml.innerHTML='<div class="empty"><div class="empty-icon">📝</div><div class="empty-text">你还没有登记</div></div>';return;}
+  ml.innerHTML=myData.map(function(p){
+    return '<div class="person-card" style="margin-bottom:10px;"><div class="card-header"><div class="card-avatar">'+(p.name.charAt(0)||'?')+'</div><div class="card-info"><div class="card-name">'+(p.gender==='女'?'🌸':'🌿')+' '+escHtml(p.name)+' · '+p.age+'岁</div><div class="card-basic">'+escHtml(p.city)+' · '+p.marital+'</div></div></div><div style="display:flex;gap:8px;margin-top:10px;"><button class="btn-modal" style="background:#fff;color:#e8546e;border:1.5px solid #e8546e;height:36px;" onclick="editMyData(\''+p.id+'\')">✏️ 编辑</button><button class="btn-modal" style="background:#e74c3c;color:#fff;height:36px;" onclick="deleteMyData(\''+p.id+'\')">🗑 删除</button></div></div>';
+  }).join('');
+}
+function deleteMyData(id){
+  if(!confirm('确定删除这条登记？'))return;
+  var all=loadAll(), myId=getMyId();
+  all=all.filter(function(p){return !(p.id===id&&p.ownerId===myId)});
+  saveAll(all); toast('已删除'); renderMine(); renderBrowse();
+}
+function editMyData(id){
+  var all=loadAll(), myId=getMyId();
+  var p=all.find(function(x){return x.id===id&&x.ownerId===myId});
+  if(!p)return;
+  document.getElementById('reg-gender').value=p.gender; document.getElementById('reg-name').value=p.name;
+  document.getElementById('reg-age').value=p.age; document.getElementById('reg-height').value=p.height;
+  document.getElementById('reg-edu').value=p.edu; document.getElementById('reg-job').value=p.job;
+  document.getElementById('reg-city').value=p.city; document.getElementById('reg-income').value=p.income;
+  document.getElementById('reg-debt').value=p.debt||''; document.getElementById('reg-marital').value=p.marital;
+  document.getElementById('reg-house').value=p.house; document.getElementById('reg-zodiac').value=p.zodiac||'';
+  document.getElementById('reg-shengxiao').value=p.shengxiao||''; document.getElementById('reg-date').value=p.date||'';
+  document.getElementById('reg-wechat').value=p.wechat;
+  document.getElementById('reg-intro').value=p.intro; document.getElementById('reg-requirement').value=p.requirement;
+  all=all.filter(function(x){return !(x.id===id&&x.ownerId===myId)}); saveAll(all);
+  switchPage('register'); toast('已加载到表单，修改后重新登记即可');
 }
 
-// ============ 导入导出 ============
-function exportData() {
-  const all = loadAll();
-  if (all.length === 0) { toast('暂无数据可导出'); return; }
-  const json = JSON.stringify(all, null, 2);
-  navigator.clipboard.writeText(json).then(() => toast('数据已复制到剪贴板！'))
-    .catch(() => {
-      const ta = document.createElement('textarea');
-      ta.value = json; document.body.appendChild(ta); ta.select();
-      document.execCommand('copy'); document.body.removeChild(ta);
-      toast('数据已复制到剪贴板！');
-    });
+// ============ 管理员功能 ============
+function showAdmin(action){
+  document.getElementById('admin-modal').style.display='flex';
+  document.getElementById('admin-pwd').focus();
+  adminAction = action;
+  adminCallback = function(){
+    if(adminAction==='download')downloadAndClear(false);
+    if(adminAction==='import')showImport();
+    if(adminAction==='clear')downloadAndClear(true);
+  };
+}
+function closeAdmin(){document.getElementById('admin-modal').style.display='none';document.getElementById('admin-pwd').value='';adminCallback=null;adminAction='';}
+
+function downloadJSON(data, filename) {
+  var blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
 }
 
-function showImportModal() {
-  document.getElementById('import-modal').style.display = 'flex';
-}
-function closeImportModal() {
-  document.getElementById('import-modal').style.display = 'none';
-  document.getElementById('import-json').value = '';
-}
-function doImport() {
-  try {
-    const incoming = JSON.parse(document.getElementById('import-json').value);
-    if (!Array.isArray(incoming)) throw new Error('不是数组');
-    const existing = loadAll();
-    const existingIds = new Set(existing.map(p => p.id));
-    let added = 0;
-    incoming.forEach(p => {
-      if (!p.id) p.id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-      if (!existingIds.has(p.id)) {
-        existing.push(p);
-        existingIds.add(p.id);
-        added++;
-      }
-    });
-    saveAll(existing);
-    toast(`导入完成！新增 ${added} 条，跳过 ${incoming.length - added} 条重复`);
-    closeImportModal();
-    renderMine();
-    renderBrowse();
-  } catch(e) {
-    toast('JSON 格式错误，请检查');
+function downloadAndClear(doClear) {
+  var all = loadAll();
+  if (!all.length) { toast('暂无数据可供下载'); return; }
+  var filename = 'xiangqin_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  downloadJSON(all, filename);
+  if (doClear) {
+    if (!confirm('数据已下载，确定清空全部登记数据？总人数统计将保留。')) return;
+    localStorage.removeItem(STORAGE_KEY); expandedIds = {};
+    toast('数据已下载并清空'); renderMine(); renderBrowse();
+  } else {
+    toast('下载完成！共 ' + all.length + ' 条记录');
   }
 }
 
-function clearAll() {
-  if (!confirm('确定清空全部登记数据？此操作不可恢复！')) return;
-  if (!confirm('再次确认：真的要清空吗？')) return;
-  localStorage.removeItem(STORAGE_KEY);
-  toast('数据已清空');
-  renderMine();
-  renderBrowse();
+function showImport(){document.getElementById('import-modal').style.display='flex';}
+function closeImport(){document.getElementById('import-modal').style.display='none';document.getElementById('import-json').value='';}
+function doImport(){
+  try{
+    var incoming=JSON.parse(document.getElementById('import-json').value);
+    if(!Array.isArray(incoming))throw new Error('不是数组');
+    var existing=loadAll(), eIds={}, added=0;
+    existing.forEach(function(p){eIds[p.id]=true});
+    incoming.forEach(function(p){if(!p.id)p.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6); if(!eIds[p.id]){existing.push(p);eIds[p.id]=true;added++;}});
+    saveAll(existing); toast('导入完成！新增 '+added+' 条，跳过 '+(incoming.length-added)+' 条重复');
+    closeImport(); renderMine(); renderBrowse();
+  }catch(e){toast('JSON 格式错误');}
 }
 
-// ============ 启动 ============
-renderMine();
-renderBrowse();
-</script>
+// ============ 导航 ============
+function switchPage(name){
+  document.querySelectorAll('.nav-item').forEach(function(x){x.classList.remove('active')});
+  document.querySelectorAll('.page').forEach(function(x){x.classList.remove('active')});
+  document.querySelector('.nav-item[data-page="'+name+'"]').classList.add('active');
+  document.getElementById('page-'+name).classList.add('active');
+  if(name==='browse')renderBrowse();
+  if(name==='mine')renderMine();
+}
+document.querySelectorAll('.nav-item').forEach(function(el){el.addEventListener('click',function(){switchPage(el.dataset.page)})});
 
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},1800);}
+
+document.getElementById('admin-pwd').addEventListener('keydown',function(e){if(e.key==='Enter')verifyAdmin()});
+
+renderMine(); renderBrowse();
+</script>
 </body>
 </html>
