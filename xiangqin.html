@@ -62,7 +62,7 @@ body {
 .card-avatar {
   width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #feb2c0, #f4728a);
   display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px;
-  font-weight: 700; flex-shrink: 0;
+  font-weight: 700; flex-shrink: 0; overflow: hidden;
 }
 .card-info { flex: 1; }
 .card-name { font-size: 18px; font-weight: 700; color: #333; }
@@ -203,6 +203,35 @@ body {
       <textarea id="reg-requirement" placeholder="你希望对方具备的条件：年龄范围、身高、学历、性格等"></textarea>
     </div>
 
+    <div class="form-group">
+      <label>上传照片（最多3张）</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <label for="photo-upload-1" style="flex:1;min-width:100px;height:100px;border:2px dashed #e8e0db;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fdfbf8;color:#999;font-size:13px;">
+          <div style="text-align:center;">
+            <div style="font-size:24px;margin-bottom:4px;">📷</div>
+            <div>点击上传</div>
+          </div>
+          <input type="file" id="photo-upload-1" accept="image/*" style="display:none;" onchange="previewPhoto(1)">
+        </label>
+        <label for="photo-upload-2" style="flex:1;min-width:100px;height:100px;border:2px dashed #e8e0db;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fdfbf8;color:#999;font-size:13px;">
+          <div style="text-align:center;">
+            <div style="font-size:24px;margin-bottom:4px;">📷</div>
+            <div>点击上传</div>
+          </div>
+          <input type="file" id="photo-upload-2" accept="image/*" style="display:none;" onchange="previewPhoto(2)">
+        </label>
+        <label for="photo-upload-3" style="flex:1;min-width:100px;height:100px;border:2px dashed #e8e0db;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fdfbf8;color:#999;font-size:13px;">
+          <div style="text-align:center;">
+            <div style="font-size:24px;margin-bottom:4px;">📷</div>
+            <div>点击上传</div>
+          </div>
+          <input type="file" id="photo-upload-3" accept="image/*" style="display:none;" onchange="previewPhoto(3)">
+        </label>
+      </div>
+      <div id="photo-previews" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;"></div>
+      <p style="font-size:12px;color:#999;margin-top:4px;">照片仅本地存储，不会上传到服务器</p>
+    </div>
+
     <button class="btn-submit" onclick="doRegister()">提 交 登 记</button>
     <button class="btn-reset" onclick="resetForm()">清空重填</button>
   </div>
@@ -282,6 +311,45 @@ document.querySelectorAll('.nav-item').forEach(el => {
   });
 });
 
+// ============ 照片管理 ============
+let photoData = {};
+
+function previewPhoto(slot) {
+  const file = document.getElementById('photo-upload-' + slot).files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { toast('照片不能超过 2MB'); return; }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    photoData[slot] = e.target.result;
+    renderPhotoPreviews();
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderPhotoPreviews() {
+  const container = document.getElementById('photo-previews');
+  const slots = [1,2,3].filter(s => photoData[s]);
+  if (slots.length === 0) { container.innerHTML = ''; return; }
+  container.innerHTML = slots.map(s => `
+    <div style="position:relative;width:100px;height:100px;border-radius:10px;overflow:hidden;border:2px solid #e8e0db;">
+      <img src="${photoData[s]}" style="width:100%;height:100%;object-fit:cover;">
+      <div onclick="removePhoto(${s})" style="position:absolute;top:2px;right:2px;width:22px;height:22px;background:rgba(0,0,0,.5);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;">✕</div>
+    </div>
+  `).join('');
+}
+
+function removePhoto(slot) {
+  delete photoData[slot];
+  document.getElementById('photo-upload-' + slot).value = '';
+  renderPhotoPreviews();
+}
+
+function clearPhotos() {
+  photoData = {};
+  [1,2,3].forEach(s => document.getElementById('photo-upload-' + s).value = '');
+  renderPhotoPreviews();
+}
+
 // ============ 登记 ============
 function doRegister() {
   const g = document.getElementById('reg-gender').value;
@@ -296,6 +364,7 @@ function doRegister() {
     return;
   }
 
+  const photos = Object.values(photoData);
   const person = {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
     gender: g,
@@ -311,6 +380,7 @@ function doRegister() {
     wechat: document.getElementById('reg-wechat').value.trim(),
     intro,
     requirement: document.getElementById('reg-requirement').value.trim(),
+    photos: photos, // 存储为 base64 数组
     createdAt: new Date().toISOString().slice(0, 10)
   };
 
@@ -319,6 +389,7 @@ function doRegister() {
   saveAll(all);
   toast('登记成功！');
   resetForm();
+  clearPhotos();
   renderMine();
 }
 
@@ -330,6 +401,7 @@ function resetForm() {
       if (el.tagName === 'SELECT') el.selectedIndex = 0;
       else el.value = '';
     });
+  clearPhotos();
 }
 
 // ============ 浏览 ============
@@ -364,6 +436,7 @@ function renderBrowse() {
     const isExpanded = expandedIds[p.id];
     const avatarChar = p.name.charAt(0) || '?';
     const genderEmoji = p.gender === '女' ? '🌸' : '🌿';
+    const hasPhoto = p.photos && p.photos.length > 0;
 
     const tags = [];
     if (p.edu) tags.push(`<span class="tag blue">${p.edu}</span>`);
@@ -373,6 +446,11 @@ function renderBrowse() {
 
     const detailHTML = isExpanded ? `
       <div class="card-detail show">
+        ${p.photos && p.photos.length > 0 ? `
+          <div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;padding-bottom:4px;">
+            ${p.photos.map(ph => `<img src="${ph}" style="width:120px;height:120px;border-radius:8px;object-fit:cover;flex-shrink:0;">`).join('')}
+          </div>
+        ` : ''}
         <p>📝 自我介绍：${escHtml(p.intro)}</p>
         ${p.requirement ? `<p>💞 择偶要求：${escHtml(p.requirement)}</p>` : ''}
         ${p.wechat ? `<p>📱 微信：${escHtml(p.wechat)}</p>` : ''}
@@ -383,7 +461,9 @@ function renderBrowse() {
     return `
       <div class="person-card">
         <div class="card-header">
-          <div class="card-avatar">${avatarChar}</div>
+          <div class="card-avatar" style="${hasPhoto ? `background:transparent;` : ''}">
+            ${hasPhoto ? `<img src="${p.photos[0]}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">` : avatarChar}
+          </div>
           <div class="card-info">
             <div class="card-name">${genderEmoji} ${escHtml(p.name)} · ${p.age}岁</div>
             <div class="card-basic">${p.height ? p.height+'cm · ' : ''}${escHtml(p.city)} · ${p.marital}</div>
