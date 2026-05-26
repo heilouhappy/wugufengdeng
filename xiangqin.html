@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>相亲登记�?/title>
+<title>相亲登记簿</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f4f0; min-height: 100vh; color: #333; }
@@ -70,25 +70,25 @@ body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f
 <!-- 登记 -->
 <div class="page active" id="page-register">
   <div class="form-card">
-    <h3 style="text-align:center;margin-bottom:18px;color:#e8546e;">相亲信息登记�?/h3>
-    <div class="form-group"><label>性别 <span class="required-star">*</span></label><select id="reg-gender"><option value="">请选择</option><option value="�?>�?/option><option value="�?>�?/option></select></div>
-    <div class="form-group"><label>昵称 <span class="required-star">*</span></label><input id="reg-name" placeholder="你的昵称或称�?></div>
+    <h3 style="text-align:center;margin-bottom:18px;color:#e8546e;">相亲信息登记表</h3>
+    <div class="form-group"><label>性别 <span class="required-star">*</span></label><select id="reg-gender"><option value="">请选择</option><option value="男">男</option><option value="女">女</option></select></div>
+    <div class="form-group"><label>昵称 <span class="required-star">*</span></label><input id="reg-name" placeholder="你的昵称或称呼"></div>
     <div class="form-group"><label>年龄 <span class="required-star">*</span></label><input id="reg-age" type="number" placeholder="年龄" min="18" max="80"></div>
-    <div class="form-group"><label>身高（cm�?/label><input id="reg-height" type="number" placeholder="身高" min="140" max="210"></div>
-    <div class="form-group"><label>学历</label><select id="reg-edu"><option value="">请选择</option><option>高中及以�?/option><option>大专</option><option>本科</option><option>硕士</option><option>博士</option></select></div>
-    <div class="form-group"><label>职业</label><input id="reg-job" placeholder="从事的职�?></div>
-    <div class="form-group"><label>所在城�?<span class="required-star">*</span></label><input id="reg-city" placeholder="如：北京"></div>
-    <div class="form-group"><label>年收入（万）</label><input id="reg-income" type="number" placeholder="年收�? min="0"></div>
-    <div class="form-group"><label>负债（万）</label><input id="reg-debt" type="number" placeholder="当前负债金�? min="0"></div>
+    <div class="form-group"><label>身高（cm）</label><input id="reg-height" type="number" placeholder="身高" min="140" max="210"></div>
+    <div class="form-group"><label>学历</label><select id="reg-edu"><option value="">请选择</option><option>高中及以下</option><option>大专</option><option>本科</option><option>硕士</option><option>博士</option></select></div>
+    <div class="form-group"><label>职业</label><input id="reg-job" placeholder="从事的职业"></div>
+    <div class="form-group"><label>所在城市 <span class="required-star">*</span></label><input id="reg-city" placeholder="如：北京"></div>
+    <div class="form-group"><label>年收入（万）</label><input id="reg-income" type="number" placeholder="年收入" min="0"></div>
+    <div class="form-group"><label>负债（万）</label><input id="reg-debt" type="number" placeholder="当前负债金额" min="0"></div>
     <div class="form-group"><label>婚姻状况 <span class="required-star">*</span></label><select id="reg-marital"><option value="">请选择</option><option>未婚</option><option>离异</option><option>丧偶</option></select></div>
     <div class="form-group"><label>是否有房</label><select id="reg-house"><option value="">请选择</option><option>有房</option><option>无房</option><option>计划购房</option></select></div>
-    <div class="form-group"><label>星座</label><select id="reg-zodiac"><option value="">请选择</option><option>白羊�?/option><option>金牛�?/option><option>双子�?/option><option>巨蟹�?/option><option>狮子�?/option><option>处女�?/option><option>天秤�?/option><option>天蝎�?/option><option>射手�?/option><option>摩羯�?/option><option>水瓶�?/option><option>双鱼�?/option></select></div>
-    <div class="form-group"><label>生肖</label><select id="reg-shengxiao"><option value="">请选择</option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option><option>�?/option></select></div>
+    <div class="form-group"><label>星座</label><select id="reg-zodiac"><option value="">请选择</option><option>白羊座</option><option>金牛座</option><option>双子座</option><option>巨蟹座</option><option>狮子座</option><option>处女座</option><option>天秤座</option><option>天蝎座</option><option>射手座</option><option>摩羯座</option><option>水瓶座</option><option>双鱼座</option></select></div>
+    <div class="form-group"><label>生肖</label><select id="reg-shengxiao"><option value="">请选择</option><option>鼠</option><option>牛</option><option>虎</option><option>兔</option><option>龙</option><option>蛇</option><option>马</option><option>羊</option><option>猴</option><option>鸡</option><option>狗</option><option>猪</option></select></div>
     <div class="form-group"><label>登记日期</label><input id="reg-date" type="date"></div>
-    <div class="form-group"><label>微信号（仅管理员可见�?/label><input id="reg-wechat" placeholder="方便联系的微信号"></div>
-    <div class="form-group"><label>自我介绍 <span class="required-star">*</span></label><textarea id="reg-intro" placeholder="兴趣爱好、性格特点、生活状态…�?></textarea></div>
-    <div class="form-group"><label>择偶要求</label><textarea id="reg-requirement" placeholder="年龄范围、身高、学历、性格�?></textarea></div>
-    <button class="btn-submit" onclick="doRegister()">�?�?�?�?/button>
+    <div class="form-group"><label>微信号（仅管理员可见）</label><input id="reg-wechat" placeholder="方便联系的微信号"></div>
+    <div class="form-group"><label>自我介绍 <span class="required-star">*</span></label><textarea id="reg-intro" placeholder="兴趣爱好、性格特点、生活状态……"></textarea></div>
+    <div class="form-group"><label>择偶要求</label><textarea id="reg-requirement" placeholder="年龄范围、身高、学历、性格等"></textarea></div>
+    <button class="btn-submit" onclick="doRegister()">提 交 登 记</button>
     <button class="btn-reset" onclick="resetForm()">清空重填</button>
   </div>
 </div>
@@ -96,20 +96,20 @@ body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f
 <!-- 浏览 -->
 <div class="page" id="page-browse">
   <div class="search-bar">
-    <select id="filter-gender" onchange="renderBrowse()"><option value="">全部性别</option><option value="�?>�?/option><option value="�?>�?/option></select>
+    <select id="filter-gender" onchange="renderBrowse()"><option value="">全部性别</option><option value="男">男</option><option value="女">女</option></select>
     <select id="filter-age" onchange="renderBrowse()"><option value="">全部年龄</option><option value="18-25">18-25</option><option value="26-30">26-30</option><option value="31-35">31-35</option><option value="36-40">36-40</option><option value="41+">41+</option></select>
     <input id="filter-city" placeholder="城市" oninput="renderBrowse()" style="flex:0.8;min-width:60px;">
   </div>
   <div id="browse-list"></div>
-  <div class="empty" id="browse-empty"><div class="empty-icon">📋</div><div class="empty-text">还没有人登记，快去登记吧�?/div></div>
+  <div class="empty" id="browse-empty"><div class="empty-icon">📋</div><div class="empty-text">还没有人登记，快去登记吧！</div></div>
 </div>
 
 <!-- 我的 -->
 <div class="page" id="page-mine">
   <div class="my-card">
-    <div class="my-title">登记总人�?/div>
+    <div class="my-title">登记总人数</div>
     <div class="my-count" id="total-count">0</div>
-    <div class="my-sub">其中男�?<span id="male-count">0</span> 人，女�?<span id="female-count">0</span> �?/div>
+    <div class="my-sub">其中男性 <span id="male-count">0</span> 人，女性 <span id="female-count">0</span> 人</div>
   </div>
   <div class="my-card">
     <div class="my-title">我的登记</div>
@@ -117,18 +117,18 @@ body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f
   </div>
   <div class="my-card">
     <div class="my-title">数据管理 <span style="font-size:12px;color:#e8546e;">（需管理员密码）</span></div>
-    <div class="btn-admin" onclick="showAdmin('download')">📥 下载全部数据（JSON�?/div>
+    <div class="btn-admin" onclick="showAdmin('download')">📥 下载全部数据（JSON）</div>
     <div class="btn-admin" style="color:#666;border-color:#ccc;" onclick="showAdmin('import')">📤 导入数据（合并）</div>
-    <div class="btn-admin" style="color:#c0392b;border-color:#e74c3c;margin-top:10px;" onclick="showAdmin('clear')">🗑 下载并清空全部数�?/div>
+    <div class="btn-admin" style="color:#c0392b;border-color:#e74c3c;margin-top:10px;" onclick="showAdmin('clear')">🗑 下载并清空全部数据</div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- 管理员弹�?-->
+<!-- 管理员弹窗 -->
 <div class="modal-overlay" id="admin-modal" style="display:none;" onclick="if(event.target===this)closeAdmin()">
   <div class="modal-sheet">
-    <h3>🔐 管理员验�?/h3>
+    <h3>🔐 管理员验证</h3>
     <p style="font-size:13px;color:#999;margin-bottom:12px;">请输入管理员密码</p>
     <input type="password" id="admin-pwd" placeholder="输入密码">
     <button class="btn-modal primary" onclick="verifyAdmin()">确认</button>
@@ -141,7 +141,7 @@ body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f
   <div class="modal-sheet">
     <h3>📤 导入数据</h3>
     <p style="font-size:13px;color:#999;margin-bottom:8px;">粘贴 JSON 数据，与现有数据合并（跳过重复）</p>
-    <textarea id="import-json" placeholder='[{"gender":"�?,"name":"张三",...}]'></textarea>
+    <textarea id="import-json" placeholder='[{"gender":"男","name":"张三",...}]'></textarea>
     <button class="btn-modal primary" onclick="doImport()">确认导入</button>
     <button class="btn-modal secondary" onclick="closeImport()">取消</button>
   </div>
@@ -156,7 +156,8 @@ async function sha256(msg) {
 }
 
 // ============ 管理员密码（SHA-256 哈希，源码中不可见明文）============
-// 默认密码: admin123 —�?可自行替换哈希�?const ADMIN_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
+// 默认密码: admin123 —— 可自行替换哈希值
+const ADMIN_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
 
 let adminCallback = null, adminAction = '';
 
@@ -218,7 +219,7 @@ function doRegister() {
     wechat:document.getElementById('reg-wechat').value.trim(),intro:i,
     requirement:document.getElementById('reg-requirement').value.trim(),date:d};
   var all=loadAll(); all.push(p); saveAll(all); incrementCount();
-  toast('登记成功�?); resetForm(); renderMine(); renderBrowse();
+  toast('登记成功！'); resetForm(); renderMine(); renderBrowse();
 }
 function resetForm() {
   ['reg-gender','reg-name','reg-age','reg-height','reg-edu','reg-job','reg-city','reg-income','reg-debt','reg-marital','reg-house','reg-zodiac','reg-shengxiao','reg-date','reg-wechat','reg-intro','reg-requirement'].forEach(function(id){
@@ -235,23 +236,23 @@ function renderBrowse() {
   var l=document.getElementById('browse-list'), em=document.getElementById('browse-empty');
   if(!all.length){l.innerHTML='';em.style.display='block';return;}em.style.display='none';
   l.innerHTML=all.map(function(p){
-    var isExp=expandedIds[p.id], av=p.name.charAt(0)||'?', ge=p.gender==='�??'🌸':'🌿';
+    var isExp=expandedIds[p.id], av=p.name.charAt(0)||'?', ge=p.gender==='女'?'🌸':'🌿';
     var tags=[];
     if(p.edu)tags.push('<span class="tag blue">'+p.edu+'</span>');
     if(p.job)tags.push('<span class="tag green">'+p.job+'</span>');
     if(p.house==='有房')tags.push('<span class="tag">🏠 有房</span>');
-    if(p.income)tags.push('<span class="tag blue">💰 '+p.income+'�?�?/span>');
-    if(p.zodiac)tags.push('<span class="tag">�?'+p.zodiac+'</span>');
+    if(p.income)tags.push('<span class="tag blue">💰 '+p.income+'万/年</span>');
+    if(p.zodiac)tags.push('<span class="tag">♈ '+p.zodiac+'</span>');
     if(p.shengxiao)tags.push('<span class="tag green">🐲 '+p.shengxiao+'</span>');
     var detail='';
     if(isExp){detail+='<div class="card-detail show">';
-      detail+='<p>📝 自我介绍�?+escHtml(p.intro)+'</p>';
-      if(p.requirement)detail+='<p>💞 择偶要求�?+escHtml(p.requirement)+'</p>';
-      if(p.debt)detail+='<p>🏦 负债：'+escHtml(p.debt)+'�?/p>';
-      detail+='<p style="font-size:12px;color:#bbb;margin-top:4px;">登记日期�?+(p.date||'未填�?)+'</p>';
+      detail+='<p>📝 自我介绍：'+escHtml(p.intro)+'</p>';
+      if(p.requirement)detail+='<p>💞 择偶要求：'+escHtml(p.requirement)+'</p>';
+      if(p.debt)detail+='<p>🏦 负债：'+escHtml(p.debt)+'万</p>';
+      detail+='<p style="font-size:12px;color:#bbb;margin-top:4px;">登记日期：'+(p.date||'未填写')+'</p>';
       detail+='<p style="font-size:13px;color:#e8546e;margin-top:6px;">💬 想联系TA？请找管理员牵线</p>';
       detail+='</div>';}
-    return '<div class="person-card"><div class="card-header"><div class="card-avatar">'+av+'</div><div class="card-info"><div class="card-name">'+ge+' '+escHtml(p.name)+' · '+p.age+'�?/div><div class="card-basic">'+(p.height?p.height+'cm · ':'')+escHtml(p.city)+' · '+p.marital+'</div></div></div><div class="card-tags">'+tags.join('')+'</div>'+detail+'<div class="btn-detail" onclick="toggleDetail(\''+p.id+'\')">'+(isExp?'�?收起详情':'�?展开详情')+'</div></div>';
+    return '<div class="person-card"><div class="card-header"><div class="card-avatar">'+av+'</div><div class="card-info"><div class="card-name">'+ge+' '+escHtml(p.name)+' · '+p.age+'岁</div><div class="card-basic">'+(p.height?p.height+'cm · ':'')+escHtml(p.city)+' · '+p.marital+'</div></div></div><div class="card-tags">'+tags.join('')+'</div>'+detail+'<div class="btn-detail" onclick="toggleDetail(\''+p.id+'\')">'+(isExp?'▲ 收起详情':'▼ 展开详情')+'</div></div>';
   }).join('');
 }
 function toggleDetail(id){expandedIds[id]=!expandedIds[id];renderBrowse();}
@@ -260,8 +261,8 @@ function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').
 // ============ 我的 ============
 function renderMine(){
   var all=loadAll(), myId=getMyId(), totalCount=getTotalCount();
-  var maleCount=all.filter(function(p){return p.gender==='�?}).length;
-  var femaleCount=all.filter(function(p){return p.gender==='�?}).length;
+  var maleCount=all.filter(function(p){return p.gender==='男'}).length;
+  var femaleCount=all.filter(function(p){return p.gender==='女'}).length;
   document.getElementById('total-count').textContent=totalCount;
   document.getElementById('male-count').textContent=maleCount;
   document.getElementById('female-count').textContent=femaleCount;
@@ -269,14 +270,14 @@ function renderMine(){
   var ml=document.getElementById('my-list');
   if(!myData.length){ml.innerHTML='<div class="empty"><div class="empty-icon">📝</div><div class="empty-text">你还没有登记</div></div>';return;}
   ml.innerHTML=myData.map(function(p){
-    return '<div class="person-card" style="margin-bottom:10px;"><div class="card-header"><div class="card-avatar">'+(p.name.charAt(0)||'?')+'</div><div class="card-info"><div class="card-name">'+(p.gender==='�??'🌸':'🌿')+' '+escHtml(p.name)+' · '+p.age+'�?/div><div class="card-basic">'+escHtml(p.city)+' · '+p.marital+'</div></div></div><div style="display:flex;gap:8px;margin-top:10px;"><button class="btn-modal" style="background:#fff;color:#e8546e;border:1.5px solid #e8546e;height:36px;" onclick="editMyData(\''+p.id+'\')">✏️ 编辑</button><button class="btn-modal" style="background:#e74c3c;color:#fff;height:36px;" onclick="deleteMyData(\''+p.id+'\')">🗑 删除</button></div></div>';
+    return '<div class="person-card" style="margin-bottom:10px;"><div class="card-header"><div class="card-avatar">'+(p.name.charAt(0)||'?')+'</div><div class="card-info"><div class="card-name">'+(p.gender==='女'?'🌸':'🌿')+' '+escHtml(p.name)+' · '+p.age+'岁</div><div class="card-basic">'+escHtml(p.city)+' · '+p.marital+'</div></div></div><div style="display:flex;gap:8px;margin-top:10px;"><button class="btn-modal" style="background:#fff;color:#e8546e;border:1.5px solid #e8546e;height:36px;" onclick="editMyData(\''+p.id+'\')">✏️ 编辑</button><button class="btn-modal" style="background:#e74c3c;color:#fff;height:36px;" onclick="deleteMyData(\''+p.id+'\')">🗑 删除</button></div></div>';
   }).join('');
 }
 function deleteMyData(id){
-  if(!confirm('确定删除这条登记�?))return;
+  if(!confirm('确定删除这条登记？'))return;
   var all=loadAll(), myId=getMyId();
   all=all.filter(function(p){return !(p.id===id&&p.ownerId===myId)});
-  saveAll(all); toast('已删�?); renderMine(); renderBrowse();
+  saveAll(all); toast('已删除'); renderMine(); renderBrowse();
 }
 function editMyData(id){
   var all=loadAll(), myId=getMyId();
@@ -295,7 +296,7 @@ function editMyData(id){
   switchPage('register'); toast('已加载到表单，修改后重新登记即可');
 }
 
-// ============ 管理员功�?============
+// ============ 管理员功能 ============
 function showAdmin(action){
   document.getElementById('admin-modal').style.display='flex';
   document.getElementById('admin-pwd').focus();
@@ -322,11 +323,11 @@ function downloadAndClear(doClear) {
   var filename = 'xiangqin_backup_' + new Date().toISOString().slice(0,10) + '.json';
   downloadJSON(all, filename);
   if (doClear) {
-    if (!confirm('数据已下载，确定清空全部登记数据？总人数统计将保留�?)) return;
+    if (!confirm('数据已下载，确定清空全部登记数据？总人数统计将保留。')) return;
     localStorage.removeItem(STORAGE_KEY); expandedIds = {};
     toast('数据已下载并清空'); renderMine(); renderBrowse();
   } else {
-    toast('下载完成！共 ' + all.length + ' 条记�?);
+    toast('下载完成！共 ' + all.length + ' 条记录');
   }
 }
 
@@ -339,7 +340,7 @@ function doImport(){
     var existing=loadAll(), eIds={}, added=0;
     existing.forEach(function(p){eIds[p.id]=true});
     incoming.forEach(function(p){if(!p.id)p.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6); if(!eIds[p.id]){existing.push(p);eIds[p.id]=true;added++;}});
-    saveAll(existing); toast('导入完成！新�?'+added+' 条，跳过 '+(incoming.length-added)+' 条重�?);
+    saveAll(existing); toast('导入完成！新增 '+added+' 条，跳过 '+(incoming.length-added)+' 条重复');
     closeImport(); renderMine(); renderBrowse();
   }catch(e){toast('JSON 格式错误');}
 }
