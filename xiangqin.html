@@ -166,8 +166,9 @@ async function verifyAdmin() {
   const input = document.getElementById('admin-pwd').value;
   const hash = await sha256(input);
   if (hash === ADMIN_HASH) {
+    var cb = adminCallback;
     closeAdmin();
-    if (adminCallback) adminCallback();
+    if (cb) cb();
   } else {
     toast('密码错误');
   }
