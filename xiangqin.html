@@ -158,21 +158,24 @@ async function sha256(msg) {
 
 // ============ 管理员密码（SHA-256 哈希，源码中不可见明文）============
 // 默认密码: admin123 —— 可自行替换哈希值
-const ADMIN_HASH = '07c2a3a2354e1490de9386f71f0187318686dcd9f15141c8fc19f38324168880';
+const ADMIN_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
 
-let adminCallback = null, adminAction = '';
+let adminAction = '';
 
 async function verifyAdmin() {
   const input = document.getElementById('admin-pwd').value;
   const hash = await sha256(input);
   if (hash === ADMIN_HASH) {
-    var cb = adminCallback;
-    closeAdmin();
-    if (cb) cb();
+    document.getElementById('admin-modal').style.display='none';
+    document.getElementById('admin-pwd').value='';
+    if (adminAction==='download')downloadAndClear(false);
+    if (adminAction==='import')showImport();
+    if (adminAction==='clear')downloadAndClear(true);
+    adminAction='';
   } else {
     toast('密码错误');
+    document.getElementById('admin-pwd').value='';
   }
-  document.getElementById('admin-pwd').value = '';
 }
 
 // ============ 数据 ============
@@ -372,13 +375,8 @@ function showAdmin(action){
   document.getElementById('admin-modal').style.display='flex';
   document.getElementById('admin-pwd').focus();
   adminAction = action;
-  adminCallback = function(){
-    if(adminAction==='download')downloadAndClear(false);
-    if(adminAction==='import')showImport();
-    if(adminAction==='clear')downloadAndClear(true);
-  };
 }
-function closeAdmin(){document.getElementById('admin-modal').style.display='none';document.getElementById('admin-pwd').value='';adminCallback=null;adminAction='';}
+function closeAdmin(){document.getElementById('admin-modal').style.display='none';document.getElementById('admin-pwd').value='';adminAction='';}
 
 function downloadJSON(data, filename) {
   var blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
