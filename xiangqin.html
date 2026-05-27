@@ -57,6 +57,7 @@ body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f
 .toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(0,0,0,.75); color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; z-index: 200; pointer-events: none; opacity: 0; transition: opacity .3s; }
 .toast.show { opacity: 1; }
 .required-star { color: #e8546e; }
+.group-card { background: #fff; border-radius: 14px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,.04); border: 1px solid #f0ece8; }
 </style>
 </head>
 <body>
@@ -100,6 +101,16 @@ body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f8f
     <select id="filter-gender" onchange="renderBrowse()"><option value="">全部性别</option><option value="男">男</option><option value="女">女</option></select>
     <select id="filter-age" onchange="renderBrowse()"><option value="">全部年龄</option><option value="18-25">18-25</option><option value="26-30">26-30</option><option value="31-35">31-35</option><option value="36-40">36-40</option><option value="41+">41+</option></select>
     <input id="filter-city" placeholder="城市" oninput="renderBrowse()" style="flex:0.8;min-width:60px;">
+  </div>
+  <div class="group-card">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="qq_group.jpg" alt="相亲1314 QQ群" style="width:80px;height:80px;border-radius:10px;">
+      <div>
+        <div style="font-size:16px;font-weight:700;color:#333;">相亲1314 QQ群</div>
+        <div style="font-size:13px;color:#999;margin-top:2px;">群号：1092483129</div>
+        <div style="font-size:12px;color:#e8546e;margin-top:4px;">扫码加入，邂逅缘分 ❤️</div>
+      </div>
+    </div>
   </div>
   <div id="browse-list"></div>
   <div class="empty" id="browse-empty"><div class="empty-icon">📋</div><div class="empty-text">还没有人登记，快去登记吧！</div></div>
